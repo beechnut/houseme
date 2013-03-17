@@ -1,11 +1,10 @@
 class User < ActiveRecord::Base
-  has_secure_password
-
   attr_accessible :carrier, :email, :mobile, :name, 
                   :password, :password_confirmation,
                   :receive_text
-  attr_reader :active, :last_search
-
+  has_secure_password
+  has_many :housingpreferences
+  
   before_save { |user| user.email = email.downcase }
 
   validates :name, presence: true, length: { maximum: 50 }
@@ -23,4 +22,5 @@ class User < ActiveRecord::Base
             allow_blank: true
 
   validates_length_of :mobile, minimum: 10, maximum: 10, allow_blank: true
+
 end
