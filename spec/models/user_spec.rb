@@ -23,7 +23,8 @@ describe User do
   it { should respond_to(:active) }
   it { should respond_to(:last_search) }
 
-  it { should respond_to(:housingpreferences) }
+  it { should respond_to(:microposts) }
+  it { should respond_to(:housing_preferences) }
 
   it { should be_valid }
 

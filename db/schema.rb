@@ -11,7 +11,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130315200039) do
+ActiveRecord::Schema.define(:version => 20130317145928) do
+
+  create_table "housing_preferences", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "city_id"
+    t.string   "housing_type"
+    t.integer  "neighborhood"
+    t.integer  "min_rent"
+    t.integer  "max_rent"
+    t.integer  "bedrooms"
+    t.integer  "bathrooms"
+    t.string   "additional_search_terms"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
+
+  create_table "microposts", :force => true do |t|
+    t.string   "content"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -19,9 +40,9 @@ ActiveRecord::Schema.define(:version => 20130315200039) do
     t.string   "password_digest"
     t.string   "mobile"
     t.string   "carrier"
-    t.boolean  "receive_text"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.boolean  "receive_text",    :default => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.boolean  "active",          :default => true
     t.datetime "last_search"
   end

@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
                   :password, :password_confirmation,
                   :receive_text
   has_secure_password
-  has_many :housingpreferences
+  has_many :microposts
+  has_many :housing_preferences
   
   before_save { |user| user.email = email.downcase }
 

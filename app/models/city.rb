@@ -1,7 +1,8 @@
 class City < ActiveHash::Base
   fields :craigslist_prefix, :name, :neighborhoods
-  include ActiveModel::Validations
+  # has_many :housing_preferences
 
+  include ActiveModel::Validations
   validates :name, presence: true
   validates :craigslist_prefix, presence: true
   validates :neighborhoods, presence: true

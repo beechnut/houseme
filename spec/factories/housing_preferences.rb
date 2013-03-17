@@ -2,13 +2,14 @@
 
 FactoryGirl.define do
   factory :housing_preference do
+    user_id 1
     city_id 1
+    housing_type "MyString"
     neighborhood 1
-    apartment_type "MyString"
-    additional_search_terms "MyString"
-    bedrooms "MyString"
-    bathrooms "MyString"
     min_rent 1
     max_rent 1
+    bedrooms 1
+    bathrooms 1
+    additional_search_terms "MyString"
   end
 end
