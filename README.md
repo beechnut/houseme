@@ -23,6 +23,8 @@ Future features
 
 TODO
 ----
-+ Add intro, signup pages.
++ Add Bootstrap.
++ Add static, user, signup pages.
++ Push
 + Add resque and resque-scheduler to run hourly cron job web crawls for all active users.
 + Migrate database from SQL => KVS
