@@ -1,4 +1,6 @@
 apartmentsear.ch
+roomhunte.rs
+roomswi.pe
 
 Structure:
 User =>
@@ -17,6 +19,8 @@ Housing Preferences =>
   :bathrooms in: %w(Any 1+ 1.5+ 2+ 2.5+ 3+)
   :min_rent, :max_rent
 
+### 
+
 Site
   :name
   :url
@@ -26,8 +30,10 @@ Site
   :result_links_selector
   :result_titles_selector
   :result_prices_selector
-
 Result store
+
+This could very easily work with a Key-Value Store
+
 
 City # doesn't need to be SQLite, could be KVS
   name: Boston

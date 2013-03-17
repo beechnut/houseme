@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :city do
     name "Austin"
-    neighborhoods ["MyString"]
+    neighborhoods ["Far West", "South Campus", "Hyde Park"]
     craigslist_prefix "austin"
   end
 end

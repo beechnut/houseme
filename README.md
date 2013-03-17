@@ -19,3 +19,10 @@ Future features
 + Review & reply: You'll be able to click a link in our email alert to you that sends to the housing poster a letter of interest you've pre-written. This will save you a million years.
 + Adaptive rent: Fill in the blanks: "I'd be willing to pay $____ more if the apartment has ____."
 + Premium accounts: more frequent searches and alerts.
+
+
+TODO
+----
++ Add intro, signup pages.
++ Add resque and resque-scheduler to run hourly cron job web crawls for all active users.
++ Migrate database from SQL => KVS
