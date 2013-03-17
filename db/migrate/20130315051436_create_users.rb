@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :password_digest
       t.string :mobile
       t.string :carrier
-      t.boolean :receive_text
+      t.boolean :receive_text, default: false
 
       t.timestamps
     end

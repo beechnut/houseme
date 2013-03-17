@@ -16,7 +16,111 @@ describe User do
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:authenticate) }
 
+  it { should respond_to(:mobile) }
+  it { should respond_to(:carrier) }
+  it { should respond_to(:receive_text) }
+  
+  it { should respond_to(:active) }
+  it { should respond_to(:last_search) }
+
   it { should be_valid }
+
+  
+  describe "when mobile number is missing" do
+    before { @user.mobile = " " }
+    describe "with a valid carrier" do
+      before { @user.carrier = "Verizon" }
+      it { should_not be_valid }
+    end
+  end
+
+  describe "when using a valid mobile number" do
+    before { @user.mobile = "5087692973" }
+    describe "without a carrier" do
+      before { @user.carrier = " " }
+      it { should_not be_valid }
+    end
+  end
+
+  # this test should be nested where the number has been set
+  describe "when carrier is invalid" do
+
+    before { @user.mobile = 1234567890 }
+
+    it "should be invalid" do
+      invalid_carriers = %w[Bell AirTouch Trillium Stromberg-Carlson]
+      invalid_carriers.each do |invalid_carrier|
+        @user.carrier = invalid_carrier
+        @user.should_not be_valid
+      end      
+    end
+  end
+
+  describe "when carrier is valid" do
+    before { @user.mobile = 1234567890 } # so it doesn't alert to a blank number
+    it "should be valid" do
+      valid_carriers = %w[Alltel AT&T Sprint T-Mobile Verizon]
+      valid_carriers.each do |valid_carrier|
+        @user.carrier = valid_carrier
+        @user.should be_valid
+      end
+    end
+  end
+  # end
+
+  # these tests should be moved to where the carrier is set
+  describe "when number is too short" do
+    before do
+      @user.mobile = 123456789
+      @user.carrier = "AT&T"
+    end
+    it { should_not be_valid }
+  end
+
+  describe "when number is too long" do
+    before do
+      @user.mobile = 12345678901
+      @user.carrier = "AT&T"
+    end
+    it { should_not be_valid }
+  end
+
+  describe "when number is correct length" do
+    before do
+      @user.mobile = 1234567890
+      @user.carrier = "AT&T"
+    end
+    it { should be_valid }
+  end
+  # end block
+
+  describe "if user wants to receive texts" do
+    before { @user.receive_text = true }
+    
+    describe "and has carrier and mobile number information" do
+      before do
+        @user.mobile = 1234567890
+        @user.carrier = "Verizon"
+      end
+      it { should be_valid }
+    end
+
+    describe "with invalid information" do
+
+      describe "without a mobile number" do
+        before { @user.mobile = " " }
+        it { should_not be_valid }
+      end
+
+      describe "without a carrier" do
+        before { @user.carrier = " " }
+        it { should_not be_valid }
+      end
+    end
+  end
+
+  ### ^ Specific to app ^   v User (mhartl) v
+
 
   describe "when name is missing" do
     before { @user.name = " " }
