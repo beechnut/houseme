@@ -23,10 +23,10 @@ Future features
 
 TODO
 ----
-+ Add static pgs, working signup.
-+ Push for Andrew
-+ Add resque and resque-scheduler to run hourly cron job web crawls for all active users.
-+ Migrate database from SQL => KVS
 
++ Add authentication & authorization
 + Signup form should also create one associated housing preference
 + Require account confirmation via email
+
++ Add resque and resque-scheduler to run hourly cron job web crawls for all active users.
++ Migrate database from SQL => KVS
