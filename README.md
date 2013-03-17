@@ -23,8 +23,10 @@ Future features
 
 TODO
 ----
-+ Add Bootstrap.
-+ Add static, user, signup pages.
-+ Push
++ Add static pgs, working signup.
++ Push for Andrew
 + Add resque and resque-scheduler to run hourly cron job web crawls for all active users.
 + Migrate database from SQL => KVS
+
++ Signup form should also create one associated housing preference
++ Require account confirmation via email
