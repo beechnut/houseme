@@ -23,7 +23,7 @@ Future features
 
 TODO
 ----
-+ Add authentication & authorization
++ Add authorization
 + User edit pages
 + Housing preference management
 + Signup form should also create one associated housing preference
