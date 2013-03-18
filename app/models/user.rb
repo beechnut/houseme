@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :housing_preferences
   
   before_save { |user| user.email = email.downcase }
+  before_save :create_remember_token
 
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -23,5 +24,11 @@ class User < ActiveRecord::Base
             allow_blank: true
 
   validates_length_of :mobile, minimum: 10, maximum: 10, allow_blank: true
+
+  private
+
+    def create_remember_token
+      self.remember_token = SecureRandom.urlsafe_base64
+    end
 
 end

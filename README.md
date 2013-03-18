@@ -24,7 +24,14 @@ Future features
 TODO
 ----
 + Add authentication & authorization
++ User edit pages
++ Housing preference management
 + Signup form should also create one associated housing preference
 + Require account confirmation via email
 + Add resque and resque-scheduler to run hourly cron job web crawls for all active users.
 + Migrate database from SQL => KVS
+
+
+LONG-TERM
+---------
++ Premium account / payment with Stripe
