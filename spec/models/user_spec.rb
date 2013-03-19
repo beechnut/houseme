@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 describe User do
-  
+  let(:carrier) { FactoryGirl.create(:carrier) }
   before do
     @user = User.new(name: "Matt Cloyd", email: "cloydster@gmail.com",
-                     password: "password", password_confirmation: "password")
+                     password: "password", password_confirmation: "password", mobile:"5087692973")
+    @user.carrier = carrier
   end
 
   subject { @user }
@@ -18,8 +19,11 @@ describe User do
   it { should respond_to(:remember_token) }
 
   it { should respond_to(:mobile) }
-  it { should respond_to(:carrier) }
   it { should respond_to(:receive_text) }
+
+  it { should respond_to(:carrier) }
+  it { should respond_to(:carrier_id) }
+  its(:carrier) { should == carrier }
   
   it { should respond_to(:active) }
   it { should respond_to(:last_search) }
@@ -33,7 +37,7 @@ describe User do
   describe "when mobile number is missing" do
     before { @user.mobile = " " }
     describe "with a valid carrier" do
-      before { @user.carrier = "Verizon" }
+      before { @user.carrier = carrier }
       it { should_not be_valid }
     end
   end
@@ -41,58 +45,32 @@ describe User do
   describe "when using a valid mobile number" do
     before { @user.mobile = "5087692973" }
     describe "without a carrier" do
-      before { @user.carrier = " " }
+      before { @user.carrier = nil }
       it { should_not be_valid }
     end
   end
 
-  # this test should be nested where the number has been set
-  describe "when carrier is invalid" do
-
-    before { @user.mobile = 1234567890 }
-
-    it "should be invalid" do
-      invalid_carriers = %w[Bell AirTouch Trillium Stromberg-Carlson]
-      invalid_carriers.each do |invalid_carrier|
-        @user.carrier = invalid_carrier
-        @user.should_not be_valid
-      end      
-    end
-  end
-
-  describe "when carrier is valid" do
-    before { @user.mobile = 1234567890 } # so it doesn't alert to a blank number
-    it "should be valid" do
-      valid_carriers = %w[Alltel AT&T Sprint T-Mobile Verizon]
-      valid_carriers.each do |valid_carrier|
-        @user.carrier = valid_carrier
-        @user.should be_valid
-      end
-    end
-  end
-  # end
-
   # these tests should be moved to where the carrier is set
   describe "when number is too short" do
     before do
-      @user.mobile = 123456789
-      @user.carrier = "AT&T"
+      @user.mobile = "123456789"
+      @user.carrier = carrier
     end
     it { should_not be_valid }
   end
 
   describe "when number is too long" do
     before do
-      @user.mobile = 12345678901
-      @user.carrier = "AT&T"
+      @user.mobile = "12345678901"
+      @user.carrier = carrier
     end
     it { should_not be_valid }
   end
 
   describe "when number is correct length" do
     before do
-      @user.mobile = 1234567890
-      @user.carrier = "AT&T"
+      @user.mobile = "1234567890"
+      @user.carrier = carrier
     end
     it { should be_valid }
   end
@@ -103,8 +81,8 @@ describe User do
     
     describe "and has carrier and mobile number information" do
       before do
-        @user.mobile = 1234567890
-        @user.carrier = "Verizon"
+        @user.mobile = "1234567890"
+        @user.carrier = carrier
       end
       it { should be_valid }
     end
@@ -117,7 +95,7 @@ describe User do
       end
 
       describe "without a carrier" do
-        before { @user.carrier = " " }
+        before { @user.carrier = nil }
         it { should_not be_valid }
       end
     end

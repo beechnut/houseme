@@ -32,8 +32,8 @@ describe "User pages" do
 
     describe "with valid information" do
       before do
-        fill_in "Name", with: "Matt Cloyd"
-        fill_in "Email", with: "cloydster@gmail.com"
+        fill_in "Name", with: "Test User"
+        fill_in "Email", with: "test@sbmail.com"
         fill_in "Password", with: "password"
         fill_in "Confirmation", with: "password"
       end
@@ -43,7 +43,7 @@ describe "User pages" do
 
       describe "after saving the user" do
         before { click_button submit }
-        let(:user) { User.find_by_email("cloydster@gmail.com") }
+        let(:user) { User.find_by_email("test@sbmail.com") }
 
         it { should have_selector('title', text: user.name) }
         it { should have_selector('div.alert.alert-success', text: "signed up") }
@@ -58,6 +58,7 @@ describe "User pages" do
 
     describe "edit" do
       let(:user) { FactoryGirl.create(:user) }
+      
       before do
         sign_in user
         visit edit_user_path(user)

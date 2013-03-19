@@ -11,7 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130318010448) do
+ActiveRecord::Schema.define(:version => 20130319132320) do
+
+  create_table "carriers", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "housing_preferences", :force => true do |t|
     t.integer  "user_id"
@@ -39,13 +44,14 @@ ActiveRecord::Schema.define(:version => 20130318010448) do
     t.string   "email"
     t.string   "password_digest"
     t.string   "mobile"
-    t.string   "carrier"
     t.boolean  "receive_text",    :default => false
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
     t.boolean  "active",          :default => true
     t.datetime "last_search"
     t.string   "remember_token"
+    t.text     "autointro"
+    t.integer  "carrier_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

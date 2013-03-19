@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe HousingPreference do
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryGirl.create(:user, mobile: nil, receive_text: false) }
   let(:city) { FactoryGirl.create(:city) }
   before do
     @housingpreference = user.housing_preferences.build(bedrooms: 2, max_rent: 800)

@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :microposts
   has_many :housing_preferences
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :carrier
   
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
@@ -16,14 +18,18 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
 
-  validates_presence_of :mobile,  :if => :receive_text?
-  validates_presence_of :carrier, :if => :receive_text?
-  validates_presence_of :mobile,  :if => :carrier
-  validates_presence_of :carrier, :if => :mobile
-  validates :carrier, :inclusion => { :in => %w(Alltel AT&T Boost Sprint T-Mobile Verizon) },
-            allow_blank: true
+  validates_presence_of :mobile,     :if => :receive_text?
+  validates_presence_of :carrier_id, :if => :receive_text?
+  validates_presence_of :mobile,     :if => :carrier
+  validates_presence_of :carrier_id, :if => :mobile
 
   validates_length_of :mobile, minimum: 10, maximum: 10, allow_blank: true
+
+  def text_address
+    if user.mobile?
+      "#{user.mobile}@#{user.carrier.email_suffix}"
+    end
+  end
 
   private
 

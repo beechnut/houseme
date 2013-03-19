@@ -18,10 +18,10 @@ We'll crawl the web for you, looking for housing on a number of major housing we
 
 TODO
 ----
-+ Add field to Users for the pre-written email
-+ Add user-specific fields to edit pages
-+ Housing preference management
-+ Signup form should also create one associated housing preference
++ Add user-specific fields to user: new, edit pages & build assoc. properly
++ Housing preference edit/delete/create from user show page
++ Signup form to build one associated housing preference
++ Index page displays something different for signed-in users
 + Crawl task
 + Review & reply: You'll be able to click a link in our email alert to you that sends to the housing poster a letter of interest you've pre-written. This will save you a million years.
 + Require account confirmation via email
@@ -30,6 +30,19 @@ TODO
 + Migrate database from SQL => KVS
 + Premium accounts: more frequent searches and alerts.
 
+*-------*
+|       |
+| prefs |  [edit]
+|       |
+*-------*
+|       |
+| prefs |  [edit]
+|       |
+*-------*
+|       |
+| [new] |
+|       |
+*-------*
 
 LONG-TERM
 ---------
