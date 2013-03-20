@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @housing_preferences = @user.housing_preferences
   end
 
   def new
@@ -12,7 +13,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    # FIXME: Security?
     @user = User.new(params[:user].except(:carrier_id))
     @user.carrier = Carrier.find params[:user][:carrier_id] unless params[:user][:carrier_id].blank?
     if @user.save
@@ -28,7 +28,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update_attributes(params[:user])
+    if @user.update_attributes(params[:user].except(:carrier_id))
+      @user.carrier = Carrier.find params[:user][:carrier_id] unless params[:user][:carrier_id].blank?
       flash[:success] = "Profile updated!"
       sign_in @user
       redirect_to @user

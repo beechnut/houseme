@@ -1,0 +1,2 @@
+module HousingPreferencesHelper
+end

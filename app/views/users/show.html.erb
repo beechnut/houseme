@@ -8,4 +8,15 @@
       </h1>
     </section>
   </aside>
+  <div class="span8">
+    <% if @user.housing_preferences.any? %>
+      <h3>Housing Preferences (<%= @user.housing_preferences.count %>)</h3>
+      <ol class="housing_preferences">
+        <%= render @housing_preferences %>
+      </ol>
+    <% end %>
+    <% if @user.housing_preferences.count < 3 %>
+      <%= link_to "Create a new housing preference", new_housing_preference_path %>
+    <% end %>
+  </div>
 </div>
