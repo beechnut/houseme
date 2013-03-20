@@ -184,4 +184,12 @@ describe User do
     its(:remember_token) { should_not be_blank }
   end
 
+  describe "phone number is stripped of non-digit characters" do
+    before do
+      @user.mobile = "555-556-6989"
+      @user.save
+    end
+    its(:mobile) { should == "5555566989" }
+  end
+
 end

@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :carrier
   
+  before_validation { |user| user.mobile = user.mobile.gsub(/\D/,'') unless mobile.nil? }
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
 
@@ -18,12 +19,9 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
 
-  validates_presence_of :mobile,     :if => :receive_text?
-  validates_presence_of :carrier_id, :if => :receive_text?
-  validates_presence_of :mobile,     :if => :carrier
-  validates_presence_of :carrier_id, :if => :mobile
-
-  validates_length_of :mobile, minimum: 10, maximum: 10, allow_blank: true
+  validates :mobile, presence: true, :if => "receive_text? or !carrier_id.nil?"
+  validates :carrier_id, presence: true, :if => "receive_text? or !mobile.blank?"
+  validates :mobile, length: { is: 10 }, allow_blank: true
 
   def text_address
     if user.mobile?

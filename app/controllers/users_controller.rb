@@ -12,7 +12,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
+    # FIXME: Security?
+    @user = User.new(params[:user].except(:carrier_id))
+    @user.carrier = Carrier.find params[:user][:carrier_id] unless params[:user][:carrier_id].blank?
     if @user.save
       sign_in @user
       flash[:success] = "You're signed up!"

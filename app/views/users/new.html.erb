@@ -18,11 +18,14 @@
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation %>
 
+      <%= f.label :receive_text, "I want to receive text alerts for new housing." %>
+      <%= f.check_box :receive_text, checked: false %>
+
       <%= f.label :mobile %>
-      <%= f.number_field :mobile %>
+      <%= f.text_field :mobile %>
 
       <%= f.label :carrier %>
-      <%= collection_select(:user, :carrier_id, Carrier.all, :id, :name) %>
+      <%= collection_select(:user, :carrier_id, Carrier.all, :id, :name, { :include_blank => true }) %>
 
       <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
 

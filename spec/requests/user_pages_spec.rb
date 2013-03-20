@@ -20,10 +20,14 @@ describe "User pages" do
   end
 
   describe "signup" do
-    before { visit signup_path }
 
+    let(:carrier) { FactoryGirl.create(:carrier) }
     let(:submit) { "Create my account" }
 
+    before do
+      visit signup_path
+    end
+    
     describe "with invalid information" do
       it "should not create a user" do
         expect { click_button submit }.not_to change(User, :count)
@@ -36,6 +40,9 @@ describe "User pages" do
         fill_in "Email", with: "test@sbmail.com"
         fill_in "Password", with: "password"
         fill_in "Confirmation", with: "password"
+        check "I want to receive text alerts for new housing."
+        fill_in "Mobile", with: "1234567890"
+        select carrier.name, from: "user_carrier_id"
       end
       it "should create a user" do
         expect { click_button submit }.to change(User, :count).by(1)
@@ -75,7 +82,7 @@ describe "User pages" do
         it { should have_content('error') }
       end
 
-      describe "with valid information" do
+      describe "with valid information without phone info" do
         let(:new_name)  { "New Name" }
         let(:new_email) { "new@example.com" }
 

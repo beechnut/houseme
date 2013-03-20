@@ -1,6 +1,9 @@
 class Carrier < ActiveHash::Base
   fields :name, :email_suffix
 
+  include ActiveHash::Associations
+  belongs_to :users
+
   include ActiveModel::Validations
   validates :name, presence: true
   VALID_SUFFIX_REGEX = /[^@]+\.[^@]{2,}$/
