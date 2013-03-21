@@ -18,8 +18,10 @@ We'll crawl the web for you, looking for housing on a number of major housing we
 
 TODO
 ----
-+ Rake sample data, users & housing_prefs with Faker (mhartl 9.3.2)
 + Housing preference CRUD from user show page
+    + Write a test to prevent access to create_h_p_path if
+      there are 3 housing preferences
++ Rake sample data, users & housing_prefs with Faker (mhartl 9.3.2)
 + Signup form to build one associated housing preference
   + Note: the way to do this is through accept_nested_attributes_for or
     something along those lines

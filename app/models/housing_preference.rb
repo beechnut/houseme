@@ -6,4 +6,10 @@ class HousingPreference < ActiveRecord::Base
   belongs_to_active_hash :city
 
   validates :user_id, presence: true
+  validates :city_id, presence: true
+  validates :bathrooms, numericality: { only_integer: true }, allow_blank: true
+  validates :bedrooms,  numericality: { only_integer: true }, allow_blank: true
+  validates :min_rent,  numericality: { only_integer: true }, allow_blank: true
+  validates :max_rent,  numericality: { only_integer: true }, allow_blank: true
+
 end
