@@ -19,6 +19,8 @@ We'll crawl the web for you, looking for housing on a number of major housing we
 TODO
 ----
 + Housing preference CRUD from user show page
+    + Create AJAX selection for neighborhood
+    + Give form partials the correct info. Edit is not happy with the @hp.new I passed the partial earlier.
     + Write a test to prevent access to create_h_p_path if
       there are 3 housing preferences
 + Rake sample data, users & housing_prefs with Faker (mhartl 9.3.2)

@@ -1,14 +1,4 @@
 Houseme::Application.routes.draw do
-  get "housing_preferences/new"
-
-  get "housing_preferences/create"
-
-  get "housing_preferences/edit"
-
-  get "housing_preferences/update"
-
-  get "housing_preferences/destroy"
-
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :housing_preferences

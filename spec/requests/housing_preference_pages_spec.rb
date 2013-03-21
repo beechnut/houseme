@@ -11,10 +11,15 @@ describe "housing preference pages" do
   end
 
   describe "edit housing preference page" do
-    before { visit edit_housing_preference_path }
+    let(:user) { FactoryGirl.create(:user) }
+    let(:housing_preference) { FactoryGirl.create(:housing_preference, user: user, city: City.find(1)) }
+    before do
+      sign_in user
+      visit edit_housing_preference_path(housing_preference)
+    end
 
-    it { should have_selector('h1',    text: "New Housing Preference") }
-    it { should have_selector('title', text: "New Housing Preference") }
+    it { should have_selector('h1',    text: "Edit a Housing Preference") }
+    it { should have_selector('title', text: "Edit Preference") }
   end
 
   describe "creating a housing preference" do
@@ -28,8 +33,8 @@ describe "housing preference pages" do
     end
 
     describe "page" do
-      it { should have_selector('h1',    text: "Edit a Housing Preference") }
-      it { should have_selector('title', text: "Edit Preference") }
+      it { should have_selector('h1',    text: "New Housing Preference") }
+      it { should have_selector('title', text: "New Housing Preference") }
     end
 
     describe "with invalid information" do
@@ -39,8 +44,8 @@ describe "housing preference pages" do
 
     describe "with valid information" do
       before do
-        select "Boston", from: "City"
-        select "Jamaica Plain", from: "Neighborhood"
+        select "Boston", from: "housing_preference_city_id"
+        select "Jamaica Plain", from: "housing_preference_housing_type"
         fill_in "Bedrooms", with: 2
         fill_in "Bathrooms", with: 3
         select "Room", from: "Housing Type"
@@ -56,7 +61,7 @@ describe "housing preference pages" do
         let(:housing_preference) { user.housing_preferences.first }
 
         it { should have_content( housing_preference.city ) }
-        it { should have_content( housing_preference.neighborhood ) }
+        it { should have_content( housing_preference.housing_preference_housing_type ) }
         it { should have_content( housing_preference.min_rent ) }
         it { should have_content( housing_preference.max_rent ) }
         it { should have_selector('div.alert.alert-success', text: "created") }

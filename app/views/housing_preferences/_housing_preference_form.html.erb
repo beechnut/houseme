@@ -1,0 +1,26 @@
+<%= form_for(@housing_preference) do |f| %>
+
+  <%= render 'shared/error_messages', :@user => HousingPreference.new %>
+
+  <%= select :housing_preference, :housing_type, HousingPreference::HOUSING_TYPES %>
+
+  <%= f.label :city %>
+  <%= collection_select(:housing_preference, :city_id, City.all, :id, :name) %>
+
+  <p>--AJAX sub-selection goes here: Neighborhoods--</p>
+
+  <%= f.label        :bedrooms %>
+  <%= f.number_field :bedrooms %>
+
+  <%= f.label        :bathrooms %>
+  <%= f.number_field :bathrooms %>
+
+  <%= f.label        :min_rent, "Minimum Rent" %>
+  <%= f.number_field :min_rent %>
+
+  <%= f.label        :max_rent, "Maximum Rent" %>
+  <%= f.number_field :max_rent %>
+
+  <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+
+<% end %>
