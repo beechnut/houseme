@@ -11,6 +11,8 @@ Houseme::Application.routes.draw do
 
   match '/help', to: "static_pages#help"
 
+  post "/housing_preferences/dynamic_neighborhoods/:id" => "housing_preferences#dynamic_neighborhoods"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

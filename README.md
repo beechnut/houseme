@@ -19,10 +19,10 @@ We'll crawl the web for you, looking for housing on a number of major housing we
 TODO
 ----
 + Housing preference CRUD from user show page
-    + Create AJAX selection for neighborhood
-    + Give form partials the correct info. Edit is not happy with the @hp.new I passed the partial earlier.
-    + Write a test to prevent access to create_h_p_path if
-      there are 3 housing preferences
+    + Create AJAX selection for neighborhood:
+        + on_change - call controller action, add results of controller action respond format json to list. easy
+    + Give form partials the correct info. Edit is not happy with the @hp.new I passed the partial earlier. Or, hand-write forms now, refactor into partials later.
+    + Write a test & custom validation method to prevent access to create_h_p_path if there are 3 housing preferences
 + Rake sample data, users & housing_prefs with Faker (mhartl 9.3.2)
 + Signup form to build one associated housing preference
   + Note: the way to do this is through accept_nested_attributes_for or

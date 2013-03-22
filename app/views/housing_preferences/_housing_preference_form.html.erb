@@ -1,13 +1,14 @@
 <%= form_for(@housing_preference) do |f| %>
 
-  <%= render 'shared/error_messages', :@user => HousingPreference.new %>
+  <%= render 'shared/error_messages', :@user => @housing_preference %>
 
   <%= select :housing_preference, :housing_type, HousingPreference::HOUSING_TYPES %>
 
   <%= f.label :city %>
   <%= collection_select(:housing_preference, :city_id, City.all, :id, :name) %>
 
-  <p>--AJAX sub-selection goes here: Neighborhoods--</p>
+  <%= f.label :neighborhood %>
+  <%= select_tag :neighborhood %>
 
   <%= f.label        :bedrooms %>
   <%= f.number_field :bedrooms %>

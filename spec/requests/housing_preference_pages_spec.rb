@@ -45,10 +45,10 @@ describe "housing preference pages" do
     describe "with valid information" do
       before do
         select "Boston", from: "housing_preference_city_id"
-        select "Jamaica Plain", from: "housing_preference_housing_type"
+        select "Jamaica Plain", from: "housing_preference_neighborhood"
         fill_in "Bedrooms", with: 2
         fill_in "Bathrooms", with: 3
-        select "Room", from: "Housing Type"
+        select "Room", from: "housing_preference_housing_type"
         fill_in "Maximum Rent", with: 500
         fill_in "Minimum Rent", with: 800
       end
