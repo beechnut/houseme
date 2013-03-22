@@ -1,5 +1,5 @@
 class HousingPreference < ActiveRecord::Base
-  attr_accessible :additional_search_terms, :bathrooms, :bedrooms, :city_id,
+  attr_accessible :additional_search_terms, :bathrooms, :bedrooms, :city_id, :city,
                   :housing_type, :max_rent, :min_rent, :neighborhood
   belongs_to :user
   extend ActiveHash::Associations::ActiveRecordExtensions

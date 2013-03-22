@@ -8,6 +8,10 @@
       <li>Bathrooms:    <%= housing_preference.bathrooms %></li>
       <li>Minimum Rent: <%= housing_preference.min_rent %></li>
       <li>Maximum Rent: <%= housing_preference.max_rent %></li>
+      <%= link_to "Edit", edit_housing_preference_path(housing_preference) %>
+      |
+      <%= link_to "Delete", housing_preference, method: :delete,
+                                     data: { confirm: "You sure?" } %>
     </ul>
   </span>
 </li>
