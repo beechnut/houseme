@@ -32,7 +32,10 @@ class UsersController < ApplicationController
       @user.carrier = Carrier.find params[:user][:carrier_id] unless params[:user][:carrier_id].blank?
       flash[:success] = "Profile updated!"
       sign_in @user
-      redirect_to @user
+      respond_to do |format|
+        format.html { redirect_to @user }
+        format.js
+      end
     else
       render 'edit'
     end

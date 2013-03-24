@@ -1,0 +1,5 @@
+<% if current_user.active? %>
+  <%= render 'deactivate' %>
+<% else %>
+  <%= render 'activate' %>
+<% end %>
