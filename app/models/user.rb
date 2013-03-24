@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessible :carrier, :email, :mobile, :name, 
                   :password, :password_confirmation,
-                  :receive_text
+                  :receive_text, :active
   has_secure_password
   has_many :microposts
   has_many :housing_preferences
@@ -16,8 +16,8 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
-  validates :password, presence: true, length: { minimum: 6 }
-  validates :password_confirmation, presence: true
+  validates :password, presence: true, length: { minimum: 6 }, :if => lambda{ new_record? || !password.nil? }
+  validates :password_confirmation, presence: true, :if => lambda{ new_record? || !password.nil? }
 
   validates :mobile, presence: true, :if => "receive_text? or !carrier_id.nil?"
   validates :carrier_id, presence: true, :if => "receive_text? or !mobile.blank?"

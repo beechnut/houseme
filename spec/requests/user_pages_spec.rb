@@ -103,7 +103,7 @@ describe "User pages" do
     end
 
     describe "profile page" do
-      let(:user) { FactoryGirl.create(:user) }
+      let!(:user) { FactoryGirl.create(:user) }
       let(:city) { FactoryGirl.create(:city) }
       let!(:hp1) { FactoryGirl.create(:housing_preference, user: user, city: city, bedrooms: 2, bathrooms: 1, min_rent: 500) }
       let!(:hp2) { FactoryGirl.create(:housing_preference, user: user, city: city, bedrooms: 4, bathrooms: 2, max_rent: 900) }
