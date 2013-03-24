@@ -30,10 +30,12 @@ class UsersController < ApplicationController
   def update
     if @user.update_attributes(params[:user].except(:carrier_id))
       @user.carrier = Carrier.find params[:user][:carrier_id] unless params[:user][:carrier_id].blank?
-      flash[:success] = "Profile updated!"
       sign_in @user
       respond_to do |format|
-        format.html { redirect_to @user }
+        format.html do
+          flash[:success] = "Profile updated!"
+          redirect_to @user
+        end
         format.js
       end
     else
