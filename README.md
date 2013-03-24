@@ -18,18 +18,13 @@ We'll crawl the web for you, looking for housing on a number of major housing we
 
 TODO
 ----
-+ Create AJAX selection for neighborhood:
-  + on_change - call controller action, add results of controller action respond format json to list. easy
-+ Give form partials the correct info. Edit is not happy with the @hp.new I passed the partial earlier. Or, hand-write forms now, refactor into partials later.
++ Crawl task: Add resque and resque-scheduler to run hourly cron job web crawls for all active users.
 + Write a test & custom validation method to prevent access to create_h_p_path if there are 3 housing preferences
-+ Rake sample data, users & housing_prefs with Faker (mhartl 9.3.2)
++ Actually assign neighborhood to housing preference
 + Signup form to build one associated housing preference
   + Note: the way to do this is through accept_nested_attributes_for or
     something along those lines
-+ AJAX active/inactive button, like the Follow/Unfollow mhartl button
-+ At the same time, update all User#edit fields, maybe refactor form partials
 + Index page displays something different for signed-in users
-+ Crawl task: Add resque and resque-scheduler to run hourly cron job web crawls for all active users.
 + Review & reply: You'll be able to click a link in our email alert to you that sends to the housing poster a letter of interest you've pre-written.This will save you a million years.
   + jQuery removal of 'Review & Reply' links after click, spin, send
 + Require account confirmation via email
