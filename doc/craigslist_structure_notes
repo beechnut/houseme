@@ -1,0 +1,68 @@
+Okay. What are the parts I need to have in order?
+  How results are stored. Are they stored? They must be, because what would we have to compare it to in order to make sure they are unique?
+  How results are retrieved. Crawler. Okay.
+  How results are sent. How do I send an email to each person, with custom data?
+
+
+neighborhood: gbs
+
+HOUSING
+  apts / housing { :housing_type = "apartment" }
+  rooms / shared { :housing_type = "room" }
+  sublets / temporary { :housing_type = "room" }
+
+results div: blockquote#toc_rows
+  individual result: p.row  # datapid="listing id"
+    post link: span.pl, a[href]
+    post title: span.pl, children(text)
+      price & br: span.itempnr children(text)
+      price & br: match ($..../..br)
+
+
+to get all cities:
+
+every month, crawl craigslist for new us cities, email admin if there's something new
+
+
+QUERY
+
+additional_search_terms: query
+min_rent: minAsk
+max_rent: maxAsk
+bedrooms: bedrooms
+
+max_rent: 1500
+
+?
+zoomToPosting=
+&
+query=
+&
+srchType=A  ### A = search entire post for query, T = search title
+&
+minAsk=
+&
+maxAsk=1500
+&
+bedrooms=
+
+
+search: "great"
+bedrooms: 3
+min_rent: 1300
+max_rent: 1500
+
+?
+zoomToPosting=
+&
+query=great
+&
+srchType=A
+&
+minAsk=1300
+&
+maxAsk=1500
+&
+bedrooms=3
+
+

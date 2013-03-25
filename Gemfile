@@ -3,10 +3,10 @@ source 'https://rubygems.org'
 gem 'rails', :git => 'git://github.com/rails/rails.git', :branch => '3-2-stable'
 gem 'bootstrap-sass', '2.1'
 gem 'bcrypt-ruby', '3.0.1'
-gem 'sqlite3', '1.3.7'
 gem 'active_hash', '0.9.13'
 
 group :development, :test do
+  gem 'sqlite3', '1.3.7'
   gem 'rspec-rails', '2.13.0'
   gem 'factory_girl_rails', '4.2.1'
   gem 'faker', '1.1.2'
