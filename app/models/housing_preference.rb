@@ -14,6 +14,7 @@ class HousingPreference < ActiveRecord::Base
   validates :bedrooms,  numericality: { only_integer: true }, allow_blank: true
   validates :min_rent,  numericality: { only_integer: true }, allow_blank: true
   validates :max_rent,  numericality: { only_integer: true }, allow_blank: true
+  validates :neighborhood,  numericality: { only_integer: true }, allow_blank: true
   validates :housing_type, presence: true, inclusion: { :in => HOUSING_TYPES }
 
 end
