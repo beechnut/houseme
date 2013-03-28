@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130319132320) do
+ActiveRecord::Schema.define(:version => 20130327165730) do
 
   create_table "carriers", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -30,6 +30,18 @@ ActiveRecord::Schema.define(:version => 20130319132320) do
     t.string   "additional_search_terms"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
+  end
+
+  create_table "listings", :force => true do |t|
+    t.string   "title"
+    t.string   "url"
+    t.string   "respond_email"
+    t.integer  "bedrooms"
+    t.integer  "cost"
+    t.integer  "housing_preference_id"
+    t.integer  "user_id"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
   end
 
   create_table "microposts", :force => true do |t|

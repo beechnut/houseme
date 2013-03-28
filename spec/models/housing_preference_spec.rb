@@ -3,9 +3,12 @@ require 'spec_helper'
 describe HousingPreference do
   let(:user) { FactoryGirl.create(:user, mobile: nil, receive_text: false) }
   let(:city) { FactoryGirl.create(:city) }
+  let(:housing_preference) { FactoryGirl.create(:housing_preference) }
+  let(:listing) { FactoryGirl.create(:listing) }
   before do
     @housing_preference = user.housing_preferences.build(bedrooms: 2, max_rent: 800, housing_type: "apartment")
-    @housing_preference.city = city
+    @housing_preference.city =    city
+    @housing_preference.listings << listing
   end
 
   subject { @housing_preference }
@@ -26,6 +29,9 @@ describe HousingPreference do
   it { should respond_to(:user_id) }
   it { should respond_to(:user) }
   its(:user) { should == user }
+
+  it { should respond_to(:listings) }
+  its(:listings) { should include(listing) }
 
   it { should be_valid }
 

@@ -4,7 +4,8 @@ gem 'rails', :git => 'git://github.com/rails/rails.git', :branch => '3-2-stable'
 gem 'bootstrap-sass', '2.1'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'active_hash', '0.9.13'
-gem 'sendgrid'
+gem 'sendgrid', '1.1.0'
+gem 'resque', '1.22.0'
 
 group :development, :test do
   gem 'sqlite3', '1.3.7'

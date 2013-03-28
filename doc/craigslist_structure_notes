@@ -1,5 +1,23 @@
+class Listing < ActiveRecord::Base
+  attr_accessible :title, :url, :cost,
+                  :bedrooms, :reply_to_email
+
+  validates :title, presence: true
+  validates :url,   presence: true
+  validates :cost, presence: { numericality: true }
+  validates :bedrooms, presence: { numericality: true }
+  validates :bedrooms, presence: true, format: VALID_EMAIL_REGEX
+end
+
+
+
+
+
 Okay. What are the parts I need to have in order?
-  How results are stored. Are they stored? They must be, because what would we have to compare it to in order to make sure they are unique?
+  TDD the results model. I need:
+    Result:
+      Title, Price, Bedrooms, Post URL, Poster Email Address
+      belongs to housing preference, user through housing preference
   How results are retrieved. Crawler. Okay.
   How results are sent. How do I send an email to each person, with custom data?
 

@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :microposts
   has_many :housing_preferences
+  has_many :listings, through: :housing_preferences
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :carrier
   
