@@ -7,12 +7,15 @@
 # Ignore bundler config
 /.bundle
 
-# Ignore the default SQLite database.
+# Ignore the default SQLite database and redis database.
 /db/*.sqlite3
+/dump.rdb
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
 
 # Ignore all credential files.
-# /config/sendgrid.yml
+/config/sendgrid.yml
+/config/initializers/resque_auth.rb
+/config/initializers/secret_token.rb

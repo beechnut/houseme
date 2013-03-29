@@ -5,13 +5,16 @@ gem 'bootstrap-sass', '2.1'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'active_hash', '0.9.13'
 gem 'sendgrid', '1.1.0'
-gem 'resque', '1.22.0'
+gem 'resque', '1.22.0', :require => 'resque/server'
+gem 'resque-scheduler', '2.0.1', :require => 'resque_scheduler'
+gem 'nokogiri', '1.5.6'
 
 group :development, :test do
   gem 'sqlite3', '1.3.7'
   gem 'rspec-rails', '2.13.0'
   gem 'factory_girl_rails', '4.2.1'
-  gem 'faker', '1.1.2'
+  gem 'faker',   '1.1.2'
+  gem 'foreman', '0.62.0'
 end
 
 group :test do

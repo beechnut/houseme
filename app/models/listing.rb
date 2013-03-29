@@ -5,10 +5,9 @@ class Listing < ActiveRecord::Base
   has_one :user
   belongs_to :housing_preference
 
-  validates :title, presence: true
-  validates :url,   presence: true
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :respond_email, presence: true, format: { with: VALID_EMAIL_REGEX }
+  validates :title,         presence: true
+  validates :url,           presence: true
+  validates :respond_email, presence: true
   validates :bedrooms, numericality: { only_integer: true }
   validates :cost, numericality: { only_integer: true }
   validates :housing_preference_id, numericality: { only_integer: true }

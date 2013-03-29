@@ -13,6 +13,8 @@ Houseme::Application.routes.draw do
 
   post "/housing_preferences/dynamic_neighborhoods/:id" => "housing_preferences#dynamic_neighborhoods"
 
+  mount Resque::Server, at: "/resque"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

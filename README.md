@@ -10,45 +10,49 @@ We'll crawl the web for you, looking for housing on a number of major housing we
 ### Housing websites
 + Craigslist
 
-### Future housing websites, ideally
-+ Harvard grad student housing (not actually limited to Harvard grad students)
-+ MIT housing
-+ Tufts Housing
-
 
 TODO
-----
-+ Crawl task: Add resque and resque-scheduler to run hourly cron job web crawls for all active users.
-+ Write a test & custom validation method to prevent access to create_h_p_path if there are 3 housing preferences
-+ Actually assign neighborhood to housing preference
-+ Signup form to build one associated housing preference
-  + Note: the way to do this is through accept_nested_attributes_for or
-    something along those lines
+----------------
+
+### Top Priority for 0.1.0 (Mar 29)
+
++ Crawl task
+  + get it to send email alerts, text alerts
+  + resque-scheduler to run mid-day crawls
++ Views for results
+
+
+### Mid-Priority for 0.1.1 (Apr 2)
+
++ Emails:
+  + Forgot password
+  + Account confirmation
++ Human validation
 + Index page displays something different for signed-in users
-+ Review & reply: You'll be able to click a link in our email alert to you that sends to the housing poster a letter of interest you've pre-written.This will save you a million years.
-  + jQuery removal of 'Review & Reply' links after click, spin, send
-+ Require account confirmation via email
+
+### Mid-Priority for 0.1.2 (Apr 6)
+
 + Multiple major cities, fully fleshed out
++ Review & Reply functionality
+  + Editable autointro
+  + jQuery removal of 'Review & Reply' links
++ First search happens on signup?
+
+
+### Low Priority
+
++ Write a test & validation to prevent PUT request from creating > 3 listings
++ Signup form to build one associated housing preference
+  + Note: the way to do this is through accept_nested_attributes_for or something along those lines  
 + Migrate database from SQL => KVS
-+ Premium accounts: more frequent searches and alerts.
 
-*-------*
-|       |
-| prefs |  [edit]
-|       |
-*-------*
-|       |
-| prefs |  [edit]
-|       |
-*-------*
-|       |
-| [new] |
-|       |
-*-------*
 
-LONG-TERM
----------
-+ Premium account / payment with Stripe
-+ Premium account is free for first X users
+### Long-Term
+
++ Premium account
+  + Payment with Stripe
+  + Free for first X users
+  + More frequent searches and alerts.
 + Def Twitter DMs. # maybe private Facebook posts essentially / a woof
 + Adaptive rent: Fill in the blanks: "I'd be willing to pay $____ more if the apartment has ____."
++ Inline photos.

@@ -29,7 +29,7 @@ HOUSING
   rooms / shared { :housing_type = "room" }
   sublets / temporary { :housing_type = "room" }
 
-results div: blockquote#toc_rows
+results div: 'blockquote#toc_rows'
   individual result: p.row  # datapid="listing id"
     post link: span.pl, a[href]
     post title: span.pl, children(text)
@@ -84,3 +84,21 @@ maxAsk=1500
 bedrooms=3
 
 
+
+
+<p class="srch row" data-latitude="42.3402059591818" data-longitude="-71.1288141486583" data-pid="3692189632"> <span class="i">&nbsp;</span> <span class="pl"> <span class="itemdate">Mar 28</span> <a href="http://boston.craigslist.org/gbs/fee/3692189632.html">SHOW STOPPER, gleaming hardwood, unreal location, heat inc*April 1*</a> </span> <span class="itempnr"> $1900 / 1br -  <span class="itempp"></span> <font size="-1"> (Brookline/Coolidge Corner)</font> </span>  <small class="gc"><a href="/fee/">apts broker fee</a></small> <span class="itempx"> <span class="p"> img&nbsp;<span class="maptag" data-pid="3692189632">map</span></span></span> <br class="c"> </p>
+23:32:01 resque.1  | <p class="srch row" data-pid="3710110249"> <span class="i">&nbsp;</span> <span class="pl"> <span class="itemdate">Mar 28</span> <a href="http://boston.craigslist.org/gbs/fee/3710110249.html">Top Floor One Bed... Open Layout... French Doors... Storage &amp; Closets</a> </span> <span class="itempnr"> $1550 / 1br -  <span class="itempp"></span> <font size="-1"> (BOSTON - ALLSTON)</font> </span>  <small class="gc"><a href="/fee/">apts broker fee</a></small> <span class="itempx"> <span class="p"> img</span></span> <br class="c"> </p>
+23:32:01 resque.1  | <p class="srch row" data-pid="3710092666"> <span class="i">&nbsp;</span> <span class="pl"> <span class="itemdate">Mar 28</span> <a href="http://boston.craigslist.org/gbs/fee/3710092666.html">Stunning Laundry - In Building in this One Bedroom</a> </span> <span class="itempnr"> $1410 / 1br -  <span class="itempp"></span> <font size="-1"> (Boston)</font> </span>  <small class="gc"><a href="/fee/">apts broker fee</a></small> <span class="itempx"> <span class="p"> img</span></span> <br class="c"> </p>
+
+
+                                            first                      url
+page.css('blockquote#toc_rows p.row')[0..2][0].css('span.pl a').first["href"]
+page.css('blockquote#toc_rows p.row')[0..2][1].css('span.pl a').first.children.text
+                                            second                               title
+
+page.css('blockquote#toc_rows p.row')[0..2][1].css('span.itempnr').children.first.text
+#=> " $1550 / 1br -  " 
+  .match(/\$\d+/).to_s
+    # => "$1550" 
+  .match(/\d+br/).to_s
+    # => "1br" 

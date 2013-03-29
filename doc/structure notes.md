@@ -1,3 +1,7 @@
+# resque:  env TERM_CHILD=1 bundle exec rake jobs:work
+# FIXME: I deleted above from Procfile. Unclear as to why.
+
+
 apartmentsear.ch
 roomhunte.rs
 roomswi.pe
