@@ -126,6 +126,15 @@ describe "User pages" do
         it { should have_content(user.housing_preferences.count) }
       end
 
+      describe "listings" do
+        before do
+          hp1.listings.build(bedrooms: 2, cost: 1500, respond_email: "foo@baz.com", title: "Stunning cabin I guess", url: "url.net/9420848759f")
+          hp2.listings.build(bedrooms: 2, cost: 1500, respond_email: "foo@baz.com", title: "Stunning cabin I guess", url: "url.net/9420848759f")
+        end
+        it { should have_content(hp1.listings.first.title) }
+        it { should have_content(hp2.listings.first.cost) }
+      end
+
       describe "link to create a housing preference" do
         describe "with fewer than three housing preferences" do
           before do

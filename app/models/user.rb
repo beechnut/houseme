@@ -30,6 +30,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  def listing_count
+    if user.housing_preferences.any?
+      @count = 0
+      user.housing_preferences.each do |pref|
+        @count += pref.listings.count
+      end
+    end
+    return @count
+  end
+
   private
 
     def create_remember_token

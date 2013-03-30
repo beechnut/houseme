@@ -8,11 +8,6 @@ class ListingsFinder
 
   BASE_CRAIGSLIST_URL = "craigslist.org"
 
-  CRAIGSLIST_PATH_PARAMS = {
-    room: "roo",
-    apartment: "aap"
-  }
-
   CRAIGSLIST_QUERY_PARAMS = {
     additional_search_terms: "query",
     min_rent: "minAsk",
@@ -25,20 +20,24 @@ class ListingsFinder
     puts "Start the jarb"
                              # TODO: Remove limit in production
     User.where(active: true).limit(2).each do |user|
+      @send_email = false
+
       user.housing_preferences.each do |pref|
         puts "#{pref}"
         get_listings_for pref
       end
-    end
-    puts "End the jarb"
 
+      if @send_email
+        ListingsNotifier.listings_email( user ).deliver 
+        ListingsNotifier.listings_text ( user ).deliver
+      end
+    end
   end
   
 
-  def self.get_listings_for(pref)
-    # http://boston.craigslist.org/search/aap/gbs?zoomToPosting=&query=stunning&srchType=A&minAsk=500&maxAsk=1900&bedrooms=1
-    path = build_path_for pref
-    query = "query=stunning&minAsk=500&maxAsk=1900&bedrooms=1"
+  def self.get_listings_for(pref)    
+    path  = build_path_for  pref
+    query = build_query_for pref
 
     page_url = "http://" + pref.city.craigslist_prefix + "." + BASE_CRAIGSLIST_URL + "/search" + path + "?zoomToPosting=&srchType=A&" + query
     page = Nokogiri::HTML(open(page_url))
@@ -50,12 +49,13 @@ class ListingsFinder
 
 
   def self.save_new(listings, pref)
-     
+      
       for listing in listings do
 
         listing_url = listing.css('span.pl a').first["href"]
 
         unless Listing.find_by_url( listing_url ) do
+          @send_email = true
           title = listing.css('span.pl a').first.children.text
           cost_and_bedrooms = listing.css('span.itempnr').children.first.text
           cost = cost_and_bedrooms.match(/\$\d+/).to_s.to_i
@@ -72,10 +72,13 @@ class ListingsFinder
           else
             puts listing.errors.full_messages
           end
+
         end
       end
     end
   end
+
+
 
   def self.build_path_for(pref)
     path = "/"
@@ -84,23 +87,20 @@ class ListingsFinder
     return path.to_s
   end
 
-=begin
+
 
   def self.build_query_for(pref)
     query_string = ""
-
-    for attribute in HousingPreference.accessible_attributes do
-      query_string << CRAIGSLIST_QUERY_PARAMS[attribute.to_s] # TODO: Is to_s nec? Best access?
-      query_string << "="
-      query_string << HousingPreference[attribute.to_s] # Best access?
-      query_string << "&" # does this F up the last one?
+    for property in HousingPreference.accessible_attributes do
+      # puts property, CRAIGSLIST_QUERY_PARAMS[property.to_sym].nil?, pref[property.to_s]
+      unless CRAIGSLIST_QUERY_PARAMS[property.to_sym].nil?
+        query_string << CRAIGSLIST_QUERY_PARAMS[property.to_sym]
+        query_string << "="
+        query_string << pref[property].to_s unless pref[property].nil?
+        query_string << "&"
+      end
     end
+    return query_string
   end
-
-
-
-  
-
-=end
 
 end

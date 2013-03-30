@@ -15,3 +15,18 @@
     </ul>
   </span>
 </li>
+
+<% if housing_preference.listings.any? %>
+  <% housing_preference.listings.each do |listing| %>
+    <hr>
+    <ul>
+      <li>Title: <%= listing.title %></li>
+      <li>Bedrooms: <%= listing.bedrooms %></li>
+      <li>Cost: <%= listing.cost %></li>
+      <li> <%= link_to "Email", "mailto:#{listing.respond_email}" %>
+           |
+           <%= link_to "Visit Post", "http://#{listing.url}" %></li>
+    </ul>
+  <% end %>
+  <hr>
+<% end %>

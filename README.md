@@ -17,9 +17,7 @@ TODO
 ### Top Priority for 0.1.0 (Mar 29)
 
 + Crawl task
-  + get it to send email alerts, text alerts
-  + resque-scheduler to run mid-day crawls
-+ Views for results
+  + resque-scheduler
 
 
 ### Mid-Priority for 0.1.1 (Apr 2)
